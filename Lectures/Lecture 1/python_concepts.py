@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # Dictionaries
     my_dict = {}  # dict()
     my_dict2 = {
-        'name': 'Andreas',
+        'name': 'David',
         'age': 37,
         'cats': ['Apollo', 'Luna']
     }

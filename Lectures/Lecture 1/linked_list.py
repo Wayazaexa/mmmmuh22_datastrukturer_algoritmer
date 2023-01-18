@@ -76,12 +76,12 @@ if __name__ == '__main__':
     print(llist)
 
     size = llist.count()
-    print(f"The list contains {size} nodes.")
     assert(size == 3)
+    print(f"The list contains {size} nodes.")
 
     sum = llist.sum()
-    print(f"The sum of the data in the list is {sum}.")
     assert (sum == 6)
+    print(f"The sum of the data in the list is {sum}.")
 
     current_node = llist.head
     # Börja på första noden och gå till next, tills vi kommer till slutet

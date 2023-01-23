@@ -6,6 +6,16 @@
  - Inlämning sker genom länk till git repository (Codeberg eller Github)
  - En bonusuppgift (en extra poäng till tentan).
 
+### Inlämning Bonusuppgift 
+
+mylist: 1->2->3->4->5->6
+
+mylist.swap(1,3);
+
+Efter:
+mylist: 1->4->3->2->5->6
+
+
 ## C++ Skapa objekt på stacken vs med new (på heap) 
 
 ```
@@ -58,3 +68,37 @@ t.print();
 https://learn.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=msvc-170
 
 
+## C++ bygge
+
+### Google test
+
+Om ni använder MSYS2 / MINGW64 finns det ett färdigt paket att installera:https://packages.msys2.org/package/mingw-w64-x86_64-gtest
+
+```
+$pacman -S mingw-w64-x86_64-gtest
+```
+
+I er tasks.json fil måste ni lägga in följande under "tasks"->"args":
+
+```
+                "-I",
+                "C:/GoogleTest/googletest/googletest/include",
+                "-I",
+                "C:/GoogleTest/googletest/bin",
+                "-L",
+                "C:/GoogleTest/googletest/lib/Debug",
+                "-lgtest",
+                "-lgtest_main"
+```
+<!--
+### CMake
+
+Öppna MSYS MINGW64. Installera följande:
+
+```
+pacman -S mingw-w64-x86_64-cmake
+pacman -S ninja
+```
+
+Installera CMake extension i Visual studio code.
+-->

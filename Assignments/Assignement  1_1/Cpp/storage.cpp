@@ -137,6 +137,8 @@ bool Storage::swap(int i, int j)
         while (jj > 0)
         {
             jPrev = jPrev->next;
+            if (jPrev->next == NULL) // Return false if jj is out of bounds
+                return false;
             jj--;
         }
         jCurr = jPrev->next;
@@ -166,6 +168,8 @@ bool Storage::swap(int i, int j)
         while (ii > 0)
         {
             iPrev = iPrev->next;
+            if (iPrev->next == NULL) // Return false if ii is out of bounds
+                return false;
             ii--;
             jPrev = jPrev->next;
             jj--;
@@ -176,6 +180,8 @@ bool Storage::swap(int i, int j)
         while (jj > 0)
         {
             jPrev = jPrev->next;
+            if (jPrev->next == NULL) // Return false if jj is out of bounds
+                return false;
             jj--;
         }
         jCurr = jPrev->next;
@@ -207,14 +213,15 @@ int main()
     s->push(4);
     s->push(5);
     int pop;
-    bool ok;
 
-    ok = s->swap(0, 1);
+    if (s->swap(1, 4))
+        std::cout << "Swap successful!\n";
+    else
+        std::cout << "Swap failed!\n";
 
     if (s->pop(pop))
         std::cout << pop << "\n";
-    ok = s->peek(pop);
-    if (ok)
+    if (s->peek(pop))
         std::cout << "Peeking: " << pop << "\n";
     std::cout << "isEmpty? " << s->isEmpty() << "\n";
     if (s->pop(pop))

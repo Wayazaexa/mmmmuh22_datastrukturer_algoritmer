@@ -1,11 +1,17 @@
 # C/C++
 *.exe
 *.o
+<<<<<<< HEAD
 
 # VSCode junk
 *.code-workspace
 .vscode/
+=======
+>>>>>>> 687033ab5f59256536ad53733edae42e5cdd1702
 
+# VSCode junk
+*.code-workspace
+.vscode/
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

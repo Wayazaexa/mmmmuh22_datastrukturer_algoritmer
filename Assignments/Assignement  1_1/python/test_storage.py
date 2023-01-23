@@ -64,6 +64,41 @@ def test_isempty():
     s.pop()
     assert s.isempty()
 
+def test_swap():
+    if hasattr(Storage, 'swap'):
+        s = Storage();
+        assert s.swap(0,1) == False
+
+        s.push("f")
+        s.push("e")
+        s.push("d")
+        s.push("c")
+        s.push("b")
+        s.push("a")
+        assert s.swap(1,4) == True
+        assert s.head.data == "a"
+        assert s.head.next.data == "e"
+        assert s.head.next.next.data == "c"
+        assert s.head.next.next.next.data == "d"
+        assert s.head.next.next.next.next.data == "b"
+        assert s.head.next.next.next.next.next.data == "f"
+        assert s.swap(4,1) == True
+        assert s.swap(4,4) == True
+        assert s.head.next.data == "b"
+        assert s.head.next.next.next.next.data == "e"
+        assert s.swap(1,6) == False
+        assert s.swap(0,4) == True
+        assert s.head.data == "e"
+        assert s.head.next.data == "b"
+        assert s.head.next.next.data == "c"
+        assert s.head.next.next.next.data == "d"
+        assert s.head.next.next.next.next.data == "a"
+        assert s.head.next.next.next.next.next.data == "f"
+        assert s.swap(5,0) == True
+        assert s.head.data == "f"
+        assert s.head.next.next.next.next.data == "a"
+        assert s.head.next.next.next.next.next.data == "e"
+
 
 if __name__ == '__main__':
     pytest.main()

@@ -70,7 +70,7 @@ TEST(Storage,isempty) {
   EXPECT_TRUE(s->isEmpty());
 }
 
-/**  Frivillig, avkommentera om du implementerar 
+//  Frivillig, avkommentera om du implementerar 
 TEST(Storage,swap) {
   Storage * s = new Storage();
   EXPECT_FALSE(s->swap(0,1));
@@ -104,7 +104,6 @@ TEST(Storage,swap) {
   EXPECT_EQ(s->head->next->next->next->next->data, 1);
   EXPECT_EQ(s->head->next->next->next->next->next->data, 5);
 }
-*/
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

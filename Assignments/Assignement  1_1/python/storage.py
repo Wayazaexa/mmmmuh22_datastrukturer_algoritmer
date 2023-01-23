@@ -43,6 +43,9 @@ class Storage:
     
     def swap(self, i, j):
         """ Swaps the nodes at index i and j """
+        if self.isempty():
+            return False
         if i == j:
             return True
         
+        return False

@@ -1,9 +1,8 @@
+#ifndef storage_nju7654ewdfghjnbvcfr67890
+#define storage_nju7654ewdfghjnbvcfr67890
 
 #include <iostream>
-#include "storage.hh"
 
-//using namespace std;
-/*
 class Node
 {
 public:
@@ -33,7 +32,7 @@ public:
 
     /** Default constructor
      * 
-    *
+    */
     Storage()
     {
         this->head = NULL;
@@ -41,14 +40,14 @@ public:
 
     /** Create a Node to hold the data, then put it at the head of the list.
      * @param data The data for the new node
-    *
+    */
     void push(int data);
 
     /** Remove the head Node and return its data.
      * 
      * @param [out] The data (only valid if return true)
      * @return True if there is a node to return
-    *
+    */
     bool pop(int &data);
 
     /**
@@ -56,14 +55,14 @@ public:
      * 
      * @param [out] The data (only valid if return true)
      * @return True if text has been returned successfully (there is a node)
-    *
+    */    
     bool peek(int &data);
 
     /**
      * Return True if the list is empty, otherwise False  
      * 
      * @return True if the list is empty, otherwise False
-    *
+    */
     bool isEmpty();
 
     /**
@@ -72,7 +71,7 @@ public:
      * @return Returns true if successful, otherwise false (e.g. outside range)
     */
     /**  Frivillig, avkommentera om du implementerar. Avkommentera även i test_storage.cpp
-    *
+    */
     bool swap(int i, int j);
 };
 
@@ -115,6 +114,8 @@ bool Storage::isEmpty()
 
 bool Storage::swap(int i, int j)
 {
+    if (this->isEmpty())
+        return false;
     if (i == j) // return true if i and j are the same
         return true;
     if (i < 0 || j < 0) // return false if i or j is out of bounds
@@ -133,9 +134,6 @@ bool Storage::swap(int i, int j)
     {
         iCurr = head;
         jj--;
-        // Return false if jj is out of bounds 
-        if (jPrev->next == NULL)
-            return false;
 
         // Set jPrev to the node before index jj
         while (jj > 0)
@@ -205,41 +203,5 @@ bool Storage::swap(int i, int j)
         return true;
     }
 }
-*/
-int main()
-{
-    Storage *s = new Storage();
-    std::cout << std::boolalpha;
-    std::cout << "isEmpty? " << s->isEmpty() << "\n";
-    s->push(1);
-    s->push(2);
-    s->push(3);
-    s->push(4);
-    s->push(5);
-    int pop;
 
-    if (s->swap(1, 4))
-        std::cout << "Swap successful!\n";
-    else
-        std::cout << "Swap failed!\n";
-
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    if (s->peek(pop))
-        std::cout << "Peeking: " << pop << "\n";
-    std::cout << "isEmpty? " << s->isEmpty() << "\n";
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    std::cout << "isEmpty? " << s->isEmpty() << "\n";
-    if (s->pop(pop))
-        std::cout << pop << "\n";
-    std::cout << "\n";
-
-    return 0;
-}
+#endif

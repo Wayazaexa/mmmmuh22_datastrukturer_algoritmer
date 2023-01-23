@@ -35,7 +35,7 @@ public:
     }
 
     /** Create a Node to hold the data, then put it at the head of the list.
-     * @param text The data for the new node
+     * @param data The data for the new node
     */
     void push(int data);
 
@@ -55,10 +55,9 @@ public:
     bool peek(int &data);
 
     /**
-     * Return the data from the head Node, without removing it.
+     * Return True if the list is empty, otherwise False  
      * 
-     * @param [out] The data (only valid if return true)
-     * @return True if text has been returned successfully (there is a node)
+     * @return True if the list is empty, otherwise False
     */
     bool isEmpty();
 

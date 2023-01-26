@@ -45,11 +45,70 @@ class Storage:
         """ Swaps the nodes at index i and j """
         if self.isempty():
             return False
-        if i == j:
+        if i == j: # return true if i and j are the same
             return True
-        if i < 0 or j < 0:
+        if i < 0 or j < 0: # return false if i or j is out of bounds
             return False
+        
+        iPrev = self.head
+        jPrev = self.head
+        # To ensure I know which is the smaller index, I create new variables.
         ii = min(i, j)
         jj = max(i, j)
         
-        return False
+        if ii is 0:
+            iCurr = self.head
+            jj -= 1
+
+            # Set jPrev to the node before index jj
+            while jj > 0:
+                jPrev = jPrev.next
+                if jPrev.next is None:
+                    return False
+                jj -= 1
+            jCurr = jPrev.next
+
+            # Swap iCurr and jCurr
+            tmp = jCurr.next
+            if iCurr is jPrev: # Special case if iCurr and jCurr are adjacent
+                jCurr.next = iCurr
+            else:
+                jCurr.next = iCurr.next
+                jPrev.next = iCurr
+            iCurr.next = tmp
+            self.head = jCurr
+
+            return True
+        else:
+            ii -= 1
+            jj -= 1
+
+            # Set iPrev to the node before index ii
+            while ii > 0:
+                iPrev = iPrev.next
+                if iPrev.next is None: # Return false if ii is out of bounds
+                    return False
+                ii -= 1
+                jPrev = jPrev.next
+                jj -= 1
+            iCurr = iPrev.next
+
+            # Set jPrev to the node before index jj
+            while jj > 0:
+                jPrev = jPrev.next
+                if jPrev.next is None: # Return false if jj is out of bounds
+                    return False
+                jj -= 1
+            jCurr = jPrev.next
+
+            # Swap iCurr and jCurr
+            tmp = jCurr.next
+            if iCurr is jPrev:
+                jCurr.next = iCurr
+            else:
+                jCurr.next = iCurr.next
+                jPrev.next = iCurr
+            iCurr.next = tmp
+            iPrev.next = jCurr
+
+            return True

@@ -1,6 +1,7 @@
-#include <iostream>
+#ifndef storage_nju7654ewdfghjnbvcfr67890
+#define storage_nju7654ewdfghjnbvcfr67890
 
-using namespace std;
+#include <iostream>
 
 class Node
 {
@@ -41,5 +42,7 @@ public:
     bool pop(int &data);
     bool peek(int &data);
     bool isEmpty();
-    //bool swap(int i, int j);
+    bool swap(int i, int j);
 };
+
+#endif

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "storage.hh"
 
@@ -14,7 +13,7 @@ int main()
     s->push(5);
     int pop;
 
-    if (s->swap(1, 4))
+    if (s->swap(0, 1))
         std::cout << "Swap successful!\n";
     else
         std::cout << "Swap failed!\n";

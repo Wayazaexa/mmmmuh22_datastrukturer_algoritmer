@@ -71,85 +71,67 @@ bool Storage::swap(int i, int j)
     if (i < 0 || j < 0) // return false if i or j is out of bounds
         return false;
     
-    Node* iPrev = head;
-    Node* jPrev = head;
-    Node* iCurr;
-    Node* jCurr;
+    Node* iPrev = nullptr;
+    Node* jPrev = nullptr;
+    Node* iCurr = head;
+    Node* jCurr = head;
     Node* tmp;
     // To ensure I know which is the smaller index, I create new variables.
     int ii = std::min(i, j);
     int jj = std::max(i, j);
     
-    if (ii == 0)
+    // Set iPrev to the node before index ii
+    while (ii > 0)
     {
-        iCurr = head;
+        iPrev = iCurr;
+        if (iCurr->next == nullptr) // Return false if ii is out of bounds
+            return false;
+        iCurr = iCurr->next;
+        ii--;
+        jPrev = jCurr;
+        jCurr = jCurr->next;
         jj--;
-
-        // Set jPrev to the node before index jj
-        while (jj > 0)
-        {
-            jPrev = jPrev->next;
-            if (jPrev->next == NULL) // Return false if jj is out of bounds
-                return false;
-            jj--;
-        }
-        jCurr = jPrev->next;
-
-        // Swap iCurr and jCurr
-        tmp = jCurr->next;
-        if (iCurr == jPrev) // Special case if iCurr and jCurr are adjacent
-        {
-            jCurr->next = iCurr;
-        }
-        else
-        {
-            jCurr->next = iCurr->next;
-            jPrev->next = iCurr;
-        }
-        iCurr->next = tmp;
-        head = jCurr;
-
-        return true;
     }
+
+    // Set jPrev to the node before index jj
+    while (jj > 0)
+    {
+        jPrev = jCurr;
+        if (jCurr->next == nullptr) // Return false if jj is out of bounds
+            return false;
+        jCurr = jCurr->next;
+        jj--;
+    }
+
+    // Swap iCurr and jCurr
+    tmp = iCurr->next;
+    iCurr->next = jCurr->next;
+    if (iCurr == jPrev) // Special case if iCurr and jCurr are adjacent
+        jCurr->next = iCurr;
     else
     {
-        ii--;
-        jj--;
-
-        // Set iPrev to the node before index ii
-        while (ii > 0)
-        {
-            iPrev = iPrev->next;
-            if (iPrev->next == NULL) // Return false if ii is out of bounds
-                return false;
-            ii--;
-            jPrev = jPrev->next;
-            jj--;
-        }
-        iCurr = iPrev->next;
-
-        // Set jPrev to the node before index jj
-        while (jj > 0)
-        {
-            jPrev = jPrev->next;
-            if (jPrev->next == NULL) // Return false if jj is out of bounds
-                return false;
-            jj--;
-        }
-        jCurr = jPrev->next;
-
-        // Swap iCurr and jCurr
-        tmp = jCurr->next;
-        if (iCurr == jPrev) // Special case if iCurr and jCurr are adjacent
-            jCurr->next = iCurr;
-        else
-        {
-            jCurr->next = iCurr->next;
-            jPrev->next = iCurr;
-        }
-        iCurr->next = tmp;
+        jCurr->next = tmp;
+        jPrev->next = iCurr;
+    }
+    if (iPrev == nullptr) // Special case if iCurr is the first element
+        head = jCurr;
+    else
         iPrev->next = jCurr;
 
-        return true;
+    return true;
+}
+
+std::ostream& operator<< (std::ostream &os, const Storage* storage) 
+{
+    Node* tmp = storage->head;
+    os << "[";
+    while (tmp != nullptr)
+    {
+        os << "<" << tmp->data << ">";
+        if (tmp->next != nullptr)
+            os << ", ";
+        tmp = tmp->next;
     }
+    os << "]";
+    return os;
 }

@@ -15,7 +15,10 @@ class Stack:
         return self._size == 0
     
     def peek(self):
-        return self.stack[0]
+        if self._size == 0:
+            return ""
+        else:
+            return self.stack[0]
     
     def size(self):
         return self._size

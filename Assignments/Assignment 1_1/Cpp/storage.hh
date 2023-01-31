@@ -13,14 +13,14 @@ public:
     Node()
     {
         data = 0;
-        next = NULL;
+        next = nullptr;
     }
 
     // Constructor with data
     Node(int data)
     {
         this->data = data;
-        this->next = NULL;
+        this->next = nullptr;
     }
 
 };
@@ -35,7 +35,7 @@ public:
     */
     Storage()
     {
-        head = NULL;
+        head = nullptr;
     }
 
     void push(int data);
@@ -43,6 +43,7 @@ public:
     bool peek(int &data);
     bool isEmpty();
     bool swap(int i, int j);
+    friend std::ostream& operator<< (std::ostream &os, const Storage* storage);
 };
 
 #endif

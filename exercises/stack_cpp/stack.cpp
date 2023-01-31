@@ -44,7 +44,10 @@ bool Stack::is_empty()
 
 std::string Stack::peek()
 {
-    return stack.back();
+    if (stack.size() == 0)
+        return "";
+    else
+        return stack.back();
 }
 
 int Stack::size()

@@ -40,7 +40,7 @@ class Storage:
         if self.head is None:
             return True
         return False
-    
+
     def swap(self, i, j):
         """ Swaps the nodes at index i and j """
         if self.isempty():
@@ -49,66 +49,44 @@ class Storage:
             return True
         if i < 0 or j < 0: # return false if i or j is out of bounds
             return False
-        
-        iPrev = self.head
-        jPrev = self.head
+
+        iPrev = None
+        iCurr = self.head
+        jPrev = None
+        jCurr = self.head
         # To ensure I know which is the smaller index, I create new variables.
         ii = min(i, j)
         jj = max(i, j)
-        
-        if ii is 0:
-            iCurr = self.head
-            jj -= 1
 
-            # Set jPrev to the node before index jj
-            while jj > 0:
-                jPrev = jPrev.next
-                if jPrev.next is None:
-                    return False
-                jj -= 1
-            jCurr = jPrev.next
-
-            # Swap iCurr and jCurr
-            tmp = jCurr.next
-            if iCurr is jPrev: # Special case if iCurr and jCurr are adjacent
-                jCurr.next = iCurr
-            else:
-                jCurr.next = iCurr.next
-                jPrev.next = iCurr
-            iCurr.next = tmp
-            self.head = jCurr
-
-            return True
-        else:
+        # Set iPrev to the node before index ii
+        while ii > 0:
+            iPrev = iCurr
+            iCurr = iCurr.next
+            if iCurr is None: # Return false if ii is out of bounds
+                return False
             ii -= 1
+            jPrev = jCurr
+            jCurr = jCurr.next
             jj -= 1
 
-            # Set iPrev to the node before index ii
-            while ii > 0:
-                iPrev = iPrev.next
-                if iPrev.next is None: # Return false if ii is out of bounds
-                    return False
-                ii -= 1
-                jPrev = jPrev.next
-                jj -= 1
-            iCurr = iPrev.next
+        # Set jPrev to the node before index jj
+        while jj > 0:
+            jPrev = jCurr
+            jCurr = jCurr.next
+            if jCurr is None: # Return false if jj is out of bounds
+                return False
+            jj -= 1
 
-            # Set jPrev to the node before index jj
-            while jj > 0:
-                jPrev = jPrev.next
-                if jPrev.next is None: # Return false if jj is out of bounds
-                    return False
-                jj -= 1
-            jCurr = jPrev.next
-
-            # Swap iCurr and jCurr
-            tmp = jCurr.next
-            if iCurr is jPrev:
-                jCurr.next = iCurr
-            else:
-                jCurr.next = iCurr.next
-                jPrev.next = iCurr
-            iCurr.next = tmp
+        # Swap iCurr and jCurr
+        tmp = iCurr.next
+        iCurr.next = jCurr.next
+        if iCurr is jPrev: # Special case if iCurr and jCurr are adjacent
+            jCurr.next = iCurr
+        else:
+            jCurr.next = tmp
+            jPrev.next = iCurr
+        if iPrev is None: # Special case if iCurr is the first element
+            self.head = jCurr
+        else:
             iPrev.next = jCurr
-
-            return True
+        return True

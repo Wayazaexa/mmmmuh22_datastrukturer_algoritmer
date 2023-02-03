@@ -37,6 +37,7 @@ class Card:
         """ Compare if the rank of this card is lower than 'other' """
         if not isinstance(other, Card):
             return False
+        #return ((self.rank < other.rank) or (self.rank == other.rank)) and ((self.suite[0].upper() < other.suite[0].upper()) or (self.suite[0].upper() == other.suite[0].upper()))
         return self.rank < other.rank
 
     def __gt__(self, other):
@@ -70,9 +71,25 @@ class Deck:
     def insert(card_list, card):
         """ Inserts a 'card' in the correct spot in the deck 'card_list' """
 
-        ###################
-        # Your code here! #
-        ###################
+        found = False
+        """
+        Not sure why card_list.index(comp) doesn't work, but I had to create
+        my own index in order for it to sort properly by suit.
+        """
+        index = 0
+        for comp in card_list:
+            if card < comp:
+                card_list.insert(index, card)
+                found = True
+                break
+            elif card == comp:
+                if card.suite[0].upper() < comp.suite[0].upper():
+                    card_list.insert(index, card)
+                    found = True
+                    break
+            index += 1
+        if found is False:
+            card_list.append(card)
 
         return card_list
 
@@ -100,6 +117,21 @@ class Deck:
 
 
 if __name__ == '__main__':
+    """
+    i = 0
+    found = False
+    lista = []
+    elem = 2
+    for temp in lista:
+        if elem < temp:
+            lista.insert(i, elem)
+            found = True
+            break
+        i += 1
+    if found == False:
+        lista.append(elem)
+    print(lista)
+    """
     deck = Deck()
     print('Fresh deck:', deck)
     deck.shuffle()

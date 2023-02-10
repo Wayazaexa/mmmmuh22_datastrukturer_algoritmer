@@ -98,20 +98,17 @@ class Deck:
     def insert_by_suit(card_list, card):
         """ Inserts a 'card' in the correct spot in the deck 'card_list' """
 
-        found = False
         index = 0
         for comp in card_list:
             if card.suite[0].upper() < comp.suite[0].upper():
                 card_list.insert(index, card)
-                found = True
                 break
             elif card.suite[0].upper() == comp.suite[0].upper():
                 if card < comp:
                     card_list.insert(index, card)
-                    found = True
                     break
             index += 1
-        if found is False:
+        else:
             card_list.append(card)
 
         return card_list
@@ -132,20 +129,17 @@ class Deck:
     def insert_by_value(card_list, card):
         """ Inserts a 'card' in the correct spot in the deck 'card_list' """
 
-        found = False
         index = 0
         for comp in card_list:
             if card < comp:
                 card_list.insert(index, card)
-                found = True
                 break
             elif card == comp:
                 if card.suite[0].upper() < comp.suite[0].upper():
                     card_list.insert(index, card)
-                    found = True
                     break
             index += 1
-        if found is False:
+        else:
             card_list.append(card)
 
         return card_list
@@ -222,20 +216,6 @@ if __name__ == '__main__':
     print('Shuffled deck:', deck)
     deck.sort()
     print('Sorted deck:', deck)
-    while len(deck.cards) > 3:
-        c1 = deck.take()
-        c2 = deck.take()
-        c3 = deck.take()
-        c4 = deck.take()
-        print(f"{c1}, {c2}, {c3}, {c4}")
-        print(c1 == c2 == c3 == c4)
-    else:
-        c1 = deck.take()
-        c2 = deck.take()
-        c3 = deck.take()
-        print(c1 == c2 == c3)
-    deck = Deck()
-    print()
     deck.shuffle()
     print('Shuffled deck:', deck)
     deck.sort_by_suit()
@@ -280,7 +260,7 @@ if __name__ == '__main__':
     while len(deck2) > 0:
         deck.put(deck2.take())
     deck.shuffle()
-    print(f"Two decks of cards: {deck}, count: {len(deck)}")
+    print(f"Two decks of cards: {deck}, size: {len(deck)}")
     deck.remove_duplicates()
-    print(f"Unique cards: {deck}, count: {len(deck)}")
+    print(f"Unique cards: {deck}, size: {len(deck)}")
     print()

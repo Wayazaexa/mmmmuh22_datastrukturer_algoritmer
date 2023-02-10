@@ -2,24 +2,7 @@ import pytest
 from deck import Deck, Card
 
 # Implementera tester ni anser lämpliga här. Motivera gärna varför de behövs (vad de testar och varför).
-"""
 
-Bonusuppgift 2:
-(En bonuspoäng inför tentan)
-Följande ska implementeras (antingen i C++ eller python):
-• Lägg till tre jokrar till kortleken (ska läggas till när kortleken skapas)
-• Lägg till minst tre av följande funktioner:
-o sort_by_suit – Sortera så att kort av samma färg (suit) grupperas tillsammans.
-Inom färgen ska de sorteras i ordning
-o sort_by_value – Sortera korten i nummerordning. Notera: Sorteringen ska
-alltid bli samma, så ni måste ta hänsyn även till färgen (suit)
-o pick_by_random – Välj ut (och plocka bort) ett kort slumpmässigt ur leken.
-o deal(int n) – Dela ut kortleken till n antal personer. Här får ni tänka efter hur ni
-ska implementera denna, så att ni får jämnt antal korthögar. (Kan vara separat
-/ statisk funktion)
-o remove_duplicates – Leta upp och ta bort kort som är duplicerade
-o remove_jokers – Ta bort jokrarna
-"""
 
 def test_card_init():
     """ Initializes a card and then asserts that the rank and suite
@@ -55,7 +38,8 @@ def test_card_gt():
 def test_deck_len():
     """ Initializes a deck and asserts that the length of the deck is 55
     (because we know that the constructor adds 55 cards to a newly
-    initialized deck) """
+    initialized deck), then removes 6 cards and asserts that the length of the
+    remaining deck is 49 """
     d = Deck()
     assert len(d) == 55
     d.take()
@@ -76,9 +60,10 @@ def test_deck_take():
     assert c1 == c2
 
 def test_deck_sort():
-    """ Initializes a deck and sorts it. Then we compare the first three cards
-    (the jokers) and then four cards at a time that they are the same rank
-    (because that's the only thing '==' compares and sort() sorts by rank). """
+    """ Initializes a deck and sorts it. Then compares the first three cards
+    (the jokers) and then four cards at a time until the deck is empty,
+    that they are the same rank (because that's the only thing '==' compares
+    and sort() sorts by rank). """
     d = Deck()
     d.sort()
 

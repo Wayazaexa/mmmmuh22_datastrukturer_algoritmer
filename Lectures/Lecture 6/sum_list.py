@@ -24,4 +24,4 @@ def sum_list_r(slist):
    else:
       return slist[0] + sum_list_r(slist[1:])
    
-print(sum_list_r([5, 2, 3]))
+print(sum_list_r([5, 4, 2, 7, 1]))

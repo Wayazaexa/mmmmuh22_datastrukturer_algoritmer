@@ -66,7 +66,7 @@ def test_isempty():
 
 def test_swap():
     if hasattr(Storage, 'swap'):
-        s = Storage();
+        s = Storage()
         assert s.swap(0,1) == False
 
         s.push("f")

@@ -16,10 +16,10 @@ enum Suit {
 
 class Card
 {
-private:
+public:
     int rank;
     Suit suit;
-public:
+
     Card(int rank, Suit suit);
     int getRank(){ return this->rank; }
     Suit getSuit(){ return this->suit; }

@@ -136,9 +136,12 @@ void Deck::put(Card card) {
 
 void Deck::insert(vector<Card> &cardlist, Card card) {
 
-    /**
-     * Your code here!
-    */
+    std::vector<Card>::iterator it;
+
+    for (it = cardlist.begin(); it < cardlist.end(); it++)
+        if (card < *it)
+            break;
+    cardlist.insert(it, card);
 
     return;
 }

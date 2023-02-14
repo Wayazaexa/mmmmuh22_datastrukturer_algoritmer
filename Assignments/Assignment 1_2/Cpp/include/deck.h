@@ -1,3 +1,6 @@
+#ifndef deck_kn3roiaipgb4ttyi2yaiogbaiugopi
+#define deck_kn3roiaipgb4ttyi2yaiogbaiugopi
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -18,20 +21,22 @@ private:
     Suit suit;
 public:
     Card(int rank, Suit suit);
+    int getRank(){ return this->rank; }
+    Suit getSuit(){ return this->suit; }
     
-    bool operator == (Card const &other)
+    friend bool operator== (const Card &lhs, const Card &rhs)
     {
-        return rank == other.rank;
+        return lhs.rank == rhs.rank;
     }
 
-    bool operator < (Card const &other)
+    friend bool operator< (const Card &lhs, const Card &rhs)
     {
-        return rank < other.rank;
+        return lhs.rank < rhs.rank;
     }
 
-    bool operator > (Card const &other)
+    friend bool operator> (const Card &lhs, const Card &rhs)
     {
-        return rank > other.rank;
+        return lhs.rank > rhs.rank;
     }
 
     friend ostream & operator << (ostream &out, const Card &c);
@@ -43,6 +48,7 @@ private:
     vector<Card> cards;
 public:
     Deck();
+    vector<Card> getCards(){ return this->cards; }
     friend ostream & operator << (ostream &out, const Deck &d);
     int size();
     void shuffle();
@@ -52,3 +58,4 @@ public:
 
     static void insert(vector<Card> &cardlist, Card card);
 };
+#endif

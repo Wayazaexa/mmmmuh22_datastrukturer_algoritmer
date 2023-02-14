@@ -13,10 +13,10 @@ enum Suit {
 
 class Card
 {
-private:
+public:
     int rank;
     Suit suit;
-public:
+
     Card(int rank, Suit suit);
     
     bool operator == (Card const &other)

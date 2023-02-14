@@ -58,56 +58,61 @@ TEST(Card, gt)
 TEST(Deck, init)
 {
     Deck d = Deck();
-    EXPECT_EQ(d.getCards().size(), 52) << "deck init failed";
+    EXPECT_EQ(d.getCards().size(), 55) << "deck init failed";
 }
 
 /**
  * Initializes a deck and asserts that the length of the deck is 55
  * (because we know that the constructor adds 55 cards to a newly
  * initialized deck), then removes 6 cards and asserts that the length of the
- * remaining deck is 49
+ * remaining deck is 49.
  * 
  */
 TEST(Deck, size)
 {
     Deck d = Deck();
-    EXPECT_EQ(d.size(), 52) << "deck size 1 failed";
+    EXPECT_EQ(d.size(), 55) << "deck size 1 failed";
     d.take();
     d.take();
     d.take();
     d.take();
     d.take();
     d.take();
-    EXPECT_EQ(d.size(), 46) << "deck size 2 failed";
+    EXPECT_EQ(d.size(), 49) << "deck size 2 failed";
 }
 
 /**
  * Initializes a deck and asserts that the top card is a joker
  * (because we know that a joker is the last card that the constructor
- * adds to a newly initialized deck) """
+ * adds to a newly initialized deck).
  * 
  */
 TEST(Deck, take)
 {
     Deck d = Deck();
     Card c1 = d.take();
-    Card c2 = Card(13, Suit::Clubs); // Check with joker later on
+    Card c2 = Card(14, Suit::Joker);
     EXPECT_EQ(c1, c2) << "deck take failed";
 }
 
 /**
- * Initializes a deck and sorts it. Then compares the first three cards
+ * Initializes a deck shuffles and sorts it. Then compares the first three cards
  * (the jokers) and then four cards at a time until the deck is empty,
  * that they are the same rank (because that's the only thing '==' compares
- * and sort() sorts by rank). """
+ * and sort() sorts by rank).
  * 
  */
 TEST(Deck, sort)
 {
     Deck d = Deck();
+    d.shuffle();
     d.sort();
-    Card c1(1, Suit::Clubs), c2(1, Suit::Clubs), c3(1, Suit::Clubs), c4(1, Suit::Clubs);
-    // Remove/check the jokers first later on
+    Card c1(1, Suit::Clubs), c2(2, Suit::Clubs), c3(3, Suit::Clubs), c4(4, Suit::Clubs);
+    c1 = d.take();
+    c2 = d.take();
+    c3 = d.take();
+    EXPECT_EQ(c1, c2) << "deck sort failed";
+    EXPECT_EQ(c1, c3) << "deck sort failed";
 
     while (d.size() > 0)
     {
@@ -124,7 +129,7 @@ TEST(Deck, sort)
 /**
  * Initializes a deck, adds a card to it, then takes that card from
  * the deck and asserts that the card is the same as the one we put into
- * the deck
+ * the deck.
  * 
  */
 TEST(Deck, put)
@@ -140,13 +145,15 @@ TEST(Deck, put)
  * Initializes a deck, removes the jokers and takes a card from the deck
  * (which we know will be King of Clubs), inserts it into the deck and asserts
  * that the King of Clubs is now at index 12 in the deck because that's where
- * it should be inserted in a newly initialized deck
+ * it should be inserted in a newly initialized deck.
  * 
  */
 TEST(Deck, insert)
 {
     Deck d = Deck();
-    // Remove jokers first later on
+    d.take();
+    d.take();
+    d.take();
     Card c = d.take();
     vector<Card> cardlist = d.getCards();
     d.insert(cardlist, c);

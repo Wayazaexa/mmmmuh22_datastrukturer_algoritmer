@@ -65,6 +65,7 @@ def test_deck_sort():
     that they are the same rank (because that's the only thing '==' compares
     and sort() sorts by rank). """
     d = Deck()
+    d.shuffle()
     d.sort()
 
     c1 = d.take()

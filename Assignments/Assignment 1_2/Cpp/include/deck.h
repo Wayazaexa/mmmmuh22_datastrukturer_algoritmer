@@ -11,7 +11,8 @@ enum Suit {
     Hearts,
     Diamonds,
     Spades,
-    Clubs
+    Clubs,
+    Joker
 };
 
 class Card
@@ -55,7 +56,15 @@ public:
     void sort();
     Card take();
     void put(Card card);
+    void sort_by_suit();
+    void sort_by_value();
+    Card pick_by_random();
+    vector<vector<Card>> deal(int n);
+    void remove_duplicates();
+    void remove_jokers();
 
     static void insert(vector<Card> &cardlist, Card card);
+    static void insert_by_suit(vector<Card> &cardlist, Card card);
+    static void insert_by_value(vector<Card> &cardlist, Card card);
 };
 #endif

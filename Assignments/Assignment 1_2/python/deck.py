@@ -192,10 +192,10 @@ class Deck:
             if card.suite == 'Joker':
                 index_list.append(index)
             index += 1
-        index = 0
+        delta = 0
         for i in index_list:
-            self.cards.pop(i - index)
-            index += 1
+            self.cards.pop(i - delta)
+            delta += 1
 
     def take(self):
         """ Take the top card from the deck """

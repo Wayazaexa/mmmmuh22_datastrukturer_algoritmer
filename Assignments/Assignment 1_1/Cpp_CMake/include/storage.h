@@ -45,5 +45,4 @@ public:
     bool swap(int i, int j);
     friend std::ostream& operator<< (std::ostream &os, const Storage* storage);
 };
-
 #endif

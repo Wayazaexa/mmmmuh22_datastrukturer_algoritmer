@@ -18,7 +18,7 @@ void Storage::push(int data)
 */
 bool Storage::pop(int &data)
 {
-    if (head)
+    if (head != nullptr)
     {
         data = head->data;
         Node* tmp = head;
@@ -38,7 +38,7 @@ bool Storage::pop(int &data)
 */
 bool Storage::peek(int &data)
 {
-    if (head)
+    if (head != nullptr)
     {
         data = head->data;
         return true;
@@ -54,7 +54,7 @@ bool Storage::peek(int &data)
 */
 bool Storage::isEmpty()
 {
-    return !head;
+    return head == nullptr;
 }
 
 /**

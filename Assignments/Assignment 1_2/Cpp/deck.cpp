@@ -142,6 +142,4 @@ void Deck::insert(vector<Card> &cardlist, Card card) {
         if (card < *it)
             break;
     cardlist.insert(it, card);
-
-    return;
 }

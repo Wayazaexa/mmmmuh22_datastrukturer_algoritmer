@@ -1,5 +1,13 @@
 import os
 
+def searchFile(searchString, currentPath):
+    try:
+        with open(currentPath, 'r', encoding='utf-8') as file:
+            if searchString in file.read():
+                print(currentPath)
+    except Exception as fileError:
+        print(f"Error reading file: {currentPath}; {fileError}")
+
 def filecrawler(searchString, searchPath):
     currentPath = None
     try:
@@ -9,13 +17,7 @@ def filecrawler(searchString, searchPath):
             if os.path.isdir(currentPath):
                 filecrawler(searchString, currentPath)
             elif os.path.isfile(currentPath):
-
-                try:
-                    with open(currentPath, 'r', encoding='utf-8') as file:
-                        if searchString in file.read():
-                            print(currentPath)
-                except Exception as fileError:
-                    print(f"Error reading file: {currentPath}; {fileError}")
+                searchFile(searchString, currentPath)
     except Exception as folderError:
         print(f"Error reading folder: {searchPath}; {folderError}")
 
